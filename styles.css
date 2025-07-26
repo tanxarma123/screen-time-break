@@ -1,0 +1,80 @@
+/* styles.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f3f4f6;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing .container,
+.focus-page .main-container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+}
+
+h1, h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.25rem;
+}
+
+.start-button {
+  background: #4f46e5;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.start-button:hover {
+  background: #3730a3;
+}
+
+.audio-controls button,
+.timer-buttons button {
+  background: #10b981;
+  color: white;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.audio-controls button:hover,
+.timer-buttons button:hover {
+  background: #059669;
+}
+
+.quote-box {
+  margin: 2rem 0;
+  font-style: italic;
+}
+
+#quote {
+  font-size: 1.25rem;
+}
+
+#author {
+  display: block;
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+.timer {
+  font-size: 2rem;
+  margin-top: 1rem;
+}

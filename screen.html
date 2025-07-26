@@ -1,0 +1,49 @@
+<!-- screen.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Break Time</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body class="focus-page">
+  <div class="main-container">
+    <h2>Take a Deep Breath 🌿</h2>
+
+    <div class="audio-controls">
+      <button onclick="playSound('rain')">🌧️ Rain</button>
+      <button onclick="playSound('waves')">🌊 Ocean</button>
+      <button onclick="playSound('focus')">🎧 Focus</button>
+      <button onclick="stopAllSounds()">⏹️ Stop</button>
+    </div>
+
+    <div class="quote-box">
+      <p id="quote">"The key is in not spending time, but in investing it."</p>
+      <span id="author">— Stephen R. Covey</span>
+    </div>
+
+    <div class="timer">
+      <label for="duration-select">Choose break duration:</label>
+      <select id="duration-select" onchange="setDuration(this.value)">
+        <option value="5">5 minutes</option>
+        <option value="10">10 minutes</option>
+        <option value="15">15 minutes</option>
+        <option value="30">30 minutes</option>
+        <option value="45">45 minutes</option>
+        <option value="60">1 hour</option>
+        <option value="90">1.5 hours</option>
+        <option value="120">2 hours</option>
+      </select>
+
+      <div id="time-display" style="margin-top: 10px;">05:00</div>
+
+      <div class="timer-buttons">
+        <button onclick="startTimer()">▶️ Start</button>
+        <button onclick="resetTimer()">⏹️ Reset</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
