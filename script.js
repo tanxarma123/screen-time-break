@@ -1,4 +1,4 @@
-// sounds setup
+// 🔊 Sound setup
 const sounds = {
   rain: new Audio("assets/sounds/rain.mp3"),
   waves: new Audio("assets/sounds/waves.mp3"),
@@ -7,74 +7,96 @@ const sounds = {
 
 function playSound(type) {
   stopAllSounds();
-  sounds[type].loop = true;
-  sounds[type].play();
-}
-
-function stopAllSounds() {
-  for (let sound in sounds) {
-    sounds[sound].pause();
-    sounds[sound].currentTime = 0;
+  if (sounds[type]) {
+    sounds[type].loop = true;
+    sounds[type].play();
   }
 }
 
-// quote rotation
-const quotes = [
-  { text: "Time is what we want most, but what we use worst.", author: "William Penn" },
-  { text: "You will never find time for anything. If you want time, you must make it.", author: "Charles Buxton" },
-  { text: "The key is in not spending time, but in investing it.", author: "Stephen R. Covey" },
-  { text: "Lost time is never found again.", author: "Benjamin Franklin" },
-  { text: "Time stays long enough for those who use it well.", author: "Leonardo da Vinci" }
-];
-
-function rotateQuote() {
-  const random = quotes[Math.floor(Math.random() * quotes.length)];
-  document.getElementById("quote").textContent = `"${random.text}"`;
-  document.getElementById("author").textContent = `— ${random.author}`;
+function stopAllSounds() {
+  for (let key in sounds) {
+    sounds[key].pause();
+    sounds[key].currentTime = 0;
+  }
 }
 
-setInterval(rotateQuote, 10000); // every 10s
-
-// timer logic
+// ⏱️ Timer setup
 let timer;
-let duration = 5 * 60; // default 5 minutes
-let remaining = duration;
+let timeLeft = 300; // default 5 min
+
+function setDuration(minutes) {
+  timeLeft = minutes * 60;
+  updateDisplay();
+  resetTimer();
+}
 
 function updateDisplay() {
-  const minutes = Math.floor(remaining / 60).toString().padStart(2, "0");
-  const seconds = (remaining % 60).toString().padStart(2, "0");
-  document.getElementById("time-display").textContent = `${minutes}:${seconds}`;
+  const mins = Math.floor(timeLeft / 60)
+    .toString()
+    .padStart(2, "0");
+  const secs = (timeLeft % 60).toString().padStart(2, "0");
+  document.getElementById("time-display").textContent = `${mins}:${secs}`;
 }
 
 function startTimer() {
-  clearInterval(timer);
+  if (timer) return; // avoid multiple intervals
   timer = setInterval(() => {
-    if (remaining > 0) {
-      remaining--;
+    if (timeLeft > 0) {
+      timeLeft--;
       updateDisplay();
     } else {
       clearInterval(timer);
-      stopAllSounds();
-      alert("Break finished! Time to get back.");
+      timer = null;
+      alert("Break time is over! 🌟");
     }
   }, 1000);
 }
 
 function resetTimer() {
   clearInterval(timer);
-  remaining = duration;
+  timer = null;
   updateDisplay();
 }
 
-function setDuration(minutes) {
-  clearInterval(timer);
-  duration = parseInt(minutes) * 60;
-  remaining = duration;
-  updateDisplay();
+// 🧘 Rotating Quotes
+const quotes = [
+  { text: "The key is in not spending time, but in investing it.", author: "Stephen R. Covey" },
+  { text: "You will never find time for anything. If you want time, you must make it.", author: "Charles Buxton" },
+  { text: "Time is what we want most, but what we use worst.", author: "William Penn" },
+  { text: "Don’t count every hour in the day, make every hour in the day count.", author: "Anonymous" },
+  { text: "Almost everything will work again if you unplug it for a few minutes. Including you.", author: "Anne Lamott" },
+  { text: "Your future is created by what you do today, not tomorrow.", author: "Robert Kiyosaki" }
+];
+
+function rotateQuotes() {
+  const quoteEl = document.getElementById("quote");
+  const authorEl = document.getElementById("author");
+
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % quotes.length;
+    quoteEl.style.opacity = 0;
+
+    setTimeout(() => {
+      quoteEl.textContent = `"${quotes[index].text}"`;
+      authorEl.textContent = `— ${quotes[index].author}`;
+      quoteEl.style.opacity = 1;
+    }, 400);
+  }, 15000); // change quote every 15 seconds
 }
 
-// run on load
+// ✅ Service worker for future PWA
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js").then(() => {
+      console.log("Service Worker Registered");
+    });
+  });
+}
+
+// ✅ Run setup on page load
 window.onload = () => {
   updateDisplay();
-  rotateQuote();
+  rotateQuotes();
 };
