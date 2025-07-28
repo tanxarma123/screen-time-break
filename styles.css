@@ -1,80 +1,133 @@
-/* styles.css */
+/* Apply global styles */
 body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f3f4f6;
-  color: #333;
+  padding: 0;
+  background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  color: #333;
 }
 
-.landing .container,
-.focus-page .main-container {
-  text-align: center;
+/* Main content container with glass effect */
+.main-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
   padding: 2rem;
+  width: 90%;
   max-width: 600px;
+  text-align: center;
 }
 
-h1, h2 {
-  font-size: 2.5rem;
+/* Header */
+h2 {
+  font-size: 2rem;
   margin-bottom: 1rem;
+  color: #1a1a1a;
 }
 
-p {
-  font-size: 1.25rem;
+/* Audio Buttons */
+.audio-controls {
+  margin: 1.5rem 0;
 }
 
-.start-button {
-  background: #4f46e5;
-  color: white;
-  padding: 0.75rem 1.5rem;
+.audio-controls button {
+  background-color: #ffffff99;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.start-button:hover {
-  background: #3730a3;
-}
-
-.audio-controls button,
-.timer-buttons button {
-  background: #10b981;
-  color: white;
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
+  border-radius: 12px;
+  padding: 10px 20px;
+  margin: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.audio-controls button:hover,
-.timer-buttons button:hover {
-  background: #059669;
+.audio-controls button:hover {
+  background-color: #ffffffcc;
+  transform: scale(1.05);
 }
 
+/* Quotes */
 .quote-box {
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   font-style: italic;
-}
-
-#quote {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  transition: opacity 0.5s ease-in-out;
 }
 
 #author {
   display: block;
-  margin-top: 0.5rem;
-  color: #555;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #444;
 }
 
+/* Timer section */
 .timer {
+  margin-top: 2rem;
+}
+
+.timer label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#duration-select {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+#time-display {
   font-size: 2rem;
-  margin-top: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Timer buttons */
+.timer-buttons button {
+  background-color: #ffffff99;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timer-buttons button:hover {
+  background-color: #ffffffcc;
+  transform: scale(1.05);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .main-container {
+    padding: 1.2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .audio-controls button,
+  .timer-buttons button {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    margin: 6px;
+  }
+
+  #time-display {
+    font-size: 1.8rem;
+  }
 }
